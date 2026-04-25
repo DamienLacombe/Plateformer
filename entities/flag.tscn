@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cotf57cbbm23n"]
+
+[ext_resource type="Script" uid="uid://2jl03xmyjcm2" path="res://entities/flag.gd" id="1_1hmet"]
+[ext_resource type="Texture2D" uid="uid://d1nab677dddxr" path="res://PNG/Items/flagBlue1.png" id="1_7joy3"]
+[ext_resource type="Texture2D" uid="uid://itb61h52l6vf" path="res://PNG/Items/flagBlue2.png" id="2_1hmet"]
+[ext_resource type="Texture2D" uid="uid://06gwjs6kyllp" path="res://PNG/Items/flagBlue_down.png" id="3_c0tou"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_unfk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7joy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1hmet")
+}],
+"loop": true,
+"name": &"moove",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_c0tou")
+}],
+"loop": true,
+"name": &"take",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24dp2"]
+size = Vector2(6, 16)
+
+[node name="Flag" type="Area2D" unique_id=2131905687 groups=["flag"]]
+collision_mask = 2
+script = ExtResource("1_1hmet")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=68023783]
+scale = Vector2(0.125, 0.125)
+sprite_frames = SubResource("SpriteFrames_unfk6")
+animation = &"moove"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=999695480]
+position = Vector2(-5, 0)
+shape = SubResource("RectangleShape2D_24dp2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
